@@ -2,7 +2,7 @@
 # A Bash script that displays Best School 10 times but Hi on the 9th.
 
 i=1
-while [ $i -le 21 ]
+while [ $i -le 20 ]
 do
 	echo $i
 	case $i in
