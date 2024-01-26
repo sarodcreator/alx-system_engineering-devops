@@ -4,7 +4,7 @@
 i=0
 while [ $i -le 20 ]
 do
-
+	echo $i
 	case $i in
 
 	4)
@@ -15,9 +15,6 @@ do
 		;;
 	17)
 		echo "bad luck from Italy"
-		;;
-	*)
-                echo $i
 		;;
 	esac
 	((i++))
