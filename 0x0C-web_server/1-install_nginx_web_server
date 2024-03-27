@@ -1,0 +1,17 @@
+#!/usr/bin/env bash
+# This script configures a new Ubuntu machine to install and configure Nginx.
+
+apt-get update
+apt-get install -y nginx
+
+if ! pgrep -x "nginx" > /dev/null; then
+    /etc/init.d/nginx start
+fi
+
+ed -i 's/^\(listen\s\+\)80/\180/' /etc/nginx/sites-available/default
+/etc/init.d/nginx restart
+
+echo "<!DOCTYPE html><html><body><h1>Hello World!</h1></body></html>" > /var/www/html/index.html
+
+exit 0
+
