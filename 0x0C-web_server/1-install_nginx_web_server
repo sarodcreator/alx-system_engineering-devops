@@ -1,12 +1,7 @@
 #!/usr/bin/env bash
-# This script configures a new Ubuntu machine to install and configure Nginx.
-
-printf %s "server {
-     listen      80;
-     listen      [::]:80 default_server;
-     root        /etc/nginx/html;
-     index       index.html index.htm;
-}
-" > /etc/nginx/sites-available/default
-
-service nginx restart
+# A bash script to install Nginx server
+apt-get update
+apt-get -y install nginx
+ufw allow 'Nginx HTTP'
+echo "Hello World!" > /var/www/html/index.html
+service nginx start
