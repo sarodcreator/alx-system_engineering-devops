@@ -1,25 +1,16 @@
 #!/usr/bin/python3
-"""Script that returns no. of subscribers of a subreddit"""
+"""Function to query subscribers on a given Reddit subreddit."""
 import requests
 
 
 def number_of_subscribers(subreddit):
-    """Function that returns no. of subs of a subreddit"""
-    if subreddit is None or not isinstance(subreddit, str):
+    """Return the total number of subscribers on a given subreddit."""
+    url = "https://www.reddit.com/r/{}/about.json".format(subreddit)
+    headers = {
+        "User-Agent": "linux:0x16.api.advanced:v1.0.0 (by /u/bdov_)"
+    }
+    response = requests.get(url, headers=headers, allow_redirects=False)
+    if response.status_code == 404:
         return 0
-
-    headers = {'User-Agent': 'selBot/1.0'}
-    URL = f'https://www.reddit.com/r/{subreddit}/about.json'
-
-    try:
-        response = requests.get(URL, headers=headers, allow_redirects=False)
-        response.raise_for_status()
-        data = response.json()
-        subscribers = data['data']['subscribers']
-        return subscribers
-
-    except requests.exceptions.RequestException:
-        return 0
-
-    except (KeyError, ValueError):
-        return 0
+    results = response.json().get("data")
+    return results.get("subscribers")
