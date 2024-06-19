@@ -1,21 +1,25 @@
+#!/usr/bin/python3
+"""Script that returns no. of subscribers of a subreddit"""
 import requests
 
+
 def number_of_subscribers(subreddit):
-    url = f"https://www.reddit.com/r/{subreddit}/about.json"
-    headers = {'User-Agent': 'Mozilla/5.0'}  # Set a User-Agent header to avoid 429 Too Many Requests error
-    
-    response = requests.get(url, headers=headers)
-    
-    # Check if the request was successful
-    if response.status_code == 200:
-        # Parse the JSON response
-        data = response.json()
-        
-        # Extract the number of subscribers
-        subscribers = data['data']['subscribers']
-        
-        return subscribers
-    else:
-        # If subreddit not found or other issue, return 0
+    """Function that returns no. of subs of a subreddit"""
+    if subreddit is None or not isinstance(subreddit, str):
         return 0
 
+    headers = {'User-Agent': 'selBot/1.0'}
+    URL = f'https://www.reddit.com/r/{subreddit}/about.json'
+
+    try:
+        response = requests.get(URL, headers=headers, allow_redirects=False)
+        response.raise_for_status()
+        data = response.json()
+        subscribers = data['data']['subscribers']
+        return subscribers
+
+    except requests.exceptions.RequestException:
+        return 0
+
+    except (KeyError, ValueError):
+        return 0
