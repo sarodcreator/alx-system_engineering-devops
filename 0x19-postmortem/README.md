@@ -1,10 +1,10 @@
+![image](https://github.com/sarodcreator/alx-system_engineering-devops/assets/105171880/8ab1bdad-6c28-4cbc-9663-a166df3f459e)
 
 ### Summary
 
 From 6:00 AM to 7:50 PM GMT, requests to the Holberton API, hosted on the 0x17-web_stack_debugging_3 sandbox, resulted in 500 error responses. This caused applications relying on the API to malfunction or display errors. The incident reached a point where it affected all traffic to this API. The outage was traced back to a typographical error in the configuration files, causing the API to fail.
 
 ### Timeline (GMT)
-
 - **5:45 AM**: Configuration update begins
 - **5:46 AM**: Outage starts
 - **6:00 AM**: Monitoring systems alert teams (ALX releases 0x17-web_stack_debugging_3)
